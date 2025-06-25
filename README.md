@@ -12,36 +12,6 @@ Este proyecto permite comparar de forma **automatizada y visual** distintos mode
 
 ---
 
-## 📊 Diagrama del Flujo de Comparación
-
-A continuación se muestra una gráfica del flujo principal del sistema:
-
-```mermaid
-flowchart TD
-    A[Inicio] --> B[Levantar modelo Azure TTS]
-    B --> C[Ejecutar pruebas y capturar métricas/audio]
-    C --> D[Apagar Azure TTS]
-    D --> E[Levantar modelo F5-TTS]
-    E --> F[Ejecutar pruebas y capturar métricas/audio]
-    F --> G[Apagar F5-TTS]
-    G --> H[Levantar modelo Kokoro TTS]
-    H --> I[Ejecutar pruebas y capturar métricas/audio]
-    I --> J[Apagar Kokoro TTS]
-    J --> K[Levantar modelo XTTS-v2]
-    K --> L[Ejecutar pruebas y capturar métricas/audio]
-    L --> M[Apagar XTTS-v2]
-    M --> N[Generar reporte HTML con reproductores de audio]
-    N --> O[¡Comparación visual y auditiva lista!]
-```
-
-**Descripción:**
-- El sistema levanta cada modelo de TTS de forma secuencial para evitar conflictos de recursos (VRAM/GPU).
-- Ejecuta pruebas de síntesis, mide recursos y captura muestras de audio.
-- Apaga el modelo antes de pasar al siguiente.
-- Al final, genera un reporte HTML con reproductores de audio y métricas comparativas.
-
----
-
 ## 🚀 Estructura del Proyecto
 
 ```
