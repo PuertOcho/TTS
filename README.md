@@ -1,4 +1,4 @@
-# 🎤 Comparador de Modelos TTS (Text-to-Speech) con Métricas y Audio
+# 🎤 Comparador de Modelos TTS (Text-to-Speech)
 
 ## Descripción
 
@@ -12,13 +12,9 @@ Este proyecto permite comparar de forma **automatizada y visual** distintos mode
 
 ---
 
-## 📊 Ejemplo Visual de Comparativa
+## 📊 Comparativa visual, Tiempo de Respuesta por Modelo
 
-### ⏱️ Tiempo de Respuesta por Modelo
-
-<p align="center">
-  <img src="https://quickchart.io/chart?c={type:'bar',data:{labels:['F5-TTS','Azure TTS','XTTS-v2','Kokoro TTS'],datasets:[{label:'Tiempo de respuesta (s)',data:[8.3,6.6,2.1,0.5],backgroundColor:['#3498db','#e67e22','#2ecc71','#9b59b6']}]} ,options:{scales:{yAxes:[{ticks:{beginAtZero:true}}]}}}" alt="Comparativa Tiempos TTS" width="500" />
-</p>
+![Comparativa Tiempos TTS](https://quickchart.io/chart?c=%7B%22type%22%3A%22bar%22%2C%22data%22%3A%7B%22labels%22%3A%5B%22F5-TTS%22%2C%22Azure%20TTS%22%2C%22XTTS-v2%22%2C%22Kokoro%20TTS%22%5D%2C%22datasets%22%3A%5B%7B%22label%22%3A%22Tiempo%20de%20respuesta%20(s)%22%2C%22data%22%3A%5B8.3%2C6.6%2C2.1%2C0.5%5D%2C%22backgroundColor%22%3A%5B%22%233498db%22%2C%22%23e67e22%22%2C%22%232ecc71%22%2C%22%239b59b6%22%5D%7D%5D%7D%2C%22options%22%3A%7B%22scales%22%3A%7B%22yAxes%22%3A%5B%7B%22ticks%22%3A%7B%22beginAtZero%22%3Atrue%7D%7D%5D%7D%7D%7D)
 
 > **Interpretación:**
 > - **Kokoro TTS** es el más rápido (~0.5s), seguido de **XTTS-v2** (~2s), **Azure TTS** (~6.6s) y **F5-TTS** (~8.3s).
@@ -137,17 +133,5 @@ python3 test_comparison_setup.py
 
 ---
 
-## 🛡️ Solución de problemas
-- Si un modelo se cuelga, el sistema lo salta y sigue con el resto
-- Si no tienes GPU, la comparación será más lenta
-- Si algún puerto está ocupado, el script intentará liberar recursos automáticamente
-
----
-
-## 📬 Contacto y soporte
-
-¿Dudas, bugs o sugerencias? Abre un issue o contacta al responsable del proyecto.
-
----
 
 **¡Disfruta comparando y escuchando la diferencia entre los mejores modelos TTS!** 🎵🚀 
