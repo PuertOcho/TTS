@@ -12,6 +12,28 @@ Este proyecto permite comparar de forma **automatizada y visual** distintos mode
 
 ---
 
+## 📊 Ejemplo Visual de Comparativa
+
+### ⏱️ Tiempo de Respuesta por Modelo
+
+<p align="center">
+  <img src="https://quickchart.io/chart?c={type:'bar',data:{labels:['F5-TTS','Azure TTS','XTTS-v2','Kokoro TTS'],datasets:[{label:'Tiempo de respuesta (s)',data:[8.3,6.6,2.1,0.5],backgroundColor:['#3498db','#e67e22','#2ecc71','#9b59b6']}]} ,options:{scales:{yAxes:[{ticks:{beginAtZero:true}}]}}}" alt="Comparativa Tiempos TTS" width="500" />
+</p>
+
+> **Interpretación:**
+> - **Kokoro TTS** es el más rápido (~0.5s), seguido de **XTTS-v2** (~2s), **Azure TTS** (~6.6s) y **F5-TTS** (~8.3s).
+
+### 💻 Tabla de Recursos (Ejemplo)
+
+| Modelo      | CPU (%) | GPU (%) | RAM (GB) | Tiempo (s) |
+|-------------|---------|---------|----------|------------|
+| Kokoro TTS  | 57.8    | 12      | 1.2      | 0.54       |
+| XTTS-v2     | 17.6    | 82      | 2.1      | 2.12       |
+| Azure TTS   | 14.7    | 12      | 1.0      | 6.65       |
+| F5-TTS      | 22.8    | 98      | 2.5      | 8.28       |
+
+---
+
 ## 🚀 Estructura del Proyecto
 
 ```
