@@ -1,0 +1,34 @@
+# Archivos de debug de audio TTS
+debug_audio/
+*.wav
+*.mp3
+*.flac
+
+# Modelos TTS descargados
+models/
+*.pt
+*.pth
+*.bin
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# Docker
+.dockerignore
+
+# Archivos de configuración específicos del usuario
+config.json 
