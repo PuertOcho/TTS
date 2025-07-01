@@ -481,7 +481,14 @@ class ReportGenerator:
         .section {{ background: white; padding: 25px; margin-bottom: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }}
         .section h2 {{ color: #2c3e50; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #3498db; }}
         .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }}
+        .detailed-analysis {{ display: flex; flex-direction: column; gap: 20px; }}
         .model-card {{ background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db; }}
+        .model-card-full {{ background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db; width: 100%; margin-bottom: 20px; }}
+        .model-content {{ display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: stretch; min-height: 400px; }}
+        .model-metrics {{ display: flex; flex-direction: column; }}
+        .model-output {{ display: flex; flex-direction: column; height: 100%; }}
+        .model-output .metric {{ display: flex; flex-direction: column; height: 100%; }}
+        .model-output .code {{ flex: 1; min-height: 300px; max-height: none; overflow-y: auto; }}
         .model-card h3 {{ color: #2c3e50; margin-bottom: 15px; }}
         .metric {{ margin: 10px 0; }}
         .metric-label {{ font-weight: bold; color: #34495e; }}
@@ -579,11 +586,30 @@ class ReportGenerator:
                 """
                 continue
             
-            audio_players = ""
+            # Filtrar para mostrar solo 2 tipos de audio: corto y largo
+            seen_tests = set()
+            unique_audio_files = []
             for audio_info in audio_files:
+                test_name = audio_info.get('test', '')
+                if test_name not in seen_tests:
+                    unique_audio_files.append(audio_info)
+                    seen_tests.add(test_name)
+                    if len(unique_audio_files) >= 2:  # Máximo 2 archivos
+                        break
+            
+            audio_players = ""
+            for audio_info in unique_audio_files:
                 copied_file = audio_info.get('copied_file')
                 if copied_file:
-                    description = audio_info.get('description', 'Muestra de audio')
+                    test_name = audio_info.get('test', '')
+                    # Crear descripciones más claras
+                    if 'basic' in test_name:
+                        description = "Audio Corto"
+                    elif 'long' in test_name:
+                        description = "Audio Largo"
+                    else:
+                        description = audio_info.get('description', 'Muestra de audio')
+                    
                     text = audio_info.get('text', '')
                     
                     audio_players += f"""
@@ -635,7 +661,18 @@ class ReportGenerator:
             gpu_max = resources.get('gpu', {}).get('util_max', 0)
             duration = test_script.get('duration', 0)
             success = test_script.get('success', False)
-            audio_count = len(audio_files)
+            
+            # Calcular el número real de audios únicos (máximo 2)
+            seen_tests = set()
+            unique_audio_count = 0
+            for audio_info in audio_files:
+                test_name = audio_info.get('test', '')
+                if test_name not in seen_tests:
+                    unique_audio_count += 1
+                    seen_tests.add(test_name)
+                    if unique_audio_count >= 2:
+                        break
+            audio_count = unique_audio_count
             
             # Calcular tiempo de respuesta promedio
             response_times = []
@@ -686,11 +723,21 @@ class ReportGenerator:
         for model_name, model_data in models.items():
             if model_data.get('status') != 'completed':
                 model_cards += f"""
-                <div class="model-card">
+                <div class="model-card-full">
                     <h3>{model_name}</h3>
-                    <div class="metric">
-                        <span class="metric-label">Estado:</span>
-                        <span class="status-error">Error: {model_data.get('error', 'No disponible')}</span>
+                    <div class="model-content">
+                        <div class="model-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Estado:</span>
+                                <span class="status-error">Error: {model_data.get('error', 'No disponible')}</span>
+                            </div>
+                        </div>
+                        <div class="model-output">
+                            <div class="metric">
+                                <span class="metric-label">Información adicional:</span>
+                                <div class="code">El modelo no pudo iniciarse correctamente</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 """
@@ -714,48 +761,54 @@ class ReportGenerator:
             script_stdout = test_script.get('stdout', '')[-500:] if test_script.get('stdout') else 'N/A'
             
             model_cards += f"""
-            <div class="model-card">
+            <div class="model-card-full">
                 <h3>{model_name}</h3>
-                <div class="metric">
-                    <span class="metric-label">Estado del Servicio:</span>
-                    <span class="metric-value status-ok">{health.get('status', 'unknown')}</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-label">Modelo:</span>
-                    <span class="metric-value">{health.get('model', 'N/A')}</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-label">Tiempo de Respuesta:</span>
-                    <span class="metric-value">{response_time:.2f}s</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-label">Pruebas Síntesis:</span>
-                    <span class="metric-value">{success_count}/{total_tests}</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-label">Muestras de Audio:</span>
-                    <span class="metric-value">🎵 {len(audio_files)} archivos capturados</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-label">Script de Prueba:</span>
-                    <span class="metric-value {'status-ok' if script_success else 'status-error'}">{script_duration:.1f}s - {'ÉXITO' if script_success else 'FALLO'}</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-label">CPU Promedio:</span>
-                    <span class="metric-value">{resources.get('cpu', {}).get('avg', 0):.1f}%</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-label">GPU Máxima:</span>
-                    <span class="metric-value">{resources.get('gpu', {}).get('util_max', 0):.1f}%</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-label">Salida Script (últimas líneas):</span>
-                    <div class="code">{script_stdout}</div>
+                <div class="model-content">
+                    <div class="model-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Estado del Servicio:</span>
+                            <span class="metric-value status-ok">{health.get('status', 'unknown')}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Modelo:</span>
+                            <span class="metric-value">{health.get('model', 'N/A')}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Tiempo de Respuesta:</span>
+                            <span class="metric-value">{response_time:.2f}s</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Pruebas Síntesis:</span>
+                            <span class="metric-value">{success_count}/{total_tests}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Muestras de Audio:</span>
+                            <span class="metric-value">🎵 {len(audio_files)} archivos capturados</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Script de Prueba:</span>
+                            <span class="metric-value {'status-ok' if script_success else 'status-error'}">{script_duration:.1f}s - {'ÉXITO' if script_success else 'FALLO'}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">CPU Promedio:</span>
+                            <span class="metric-value">{resources.get('cpu', {}).get('avg', 0):.1f}%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">GPU Máxima:</span>
+                            <span class="metric-value">{resources.get('gpu', {}).get('util_max', 0):.1f}%</span>
+                        </div>
+                    </div>
+                    <div class="model-output">
+                        <div class="metric">
+                            <span class="metric-label">Salida Script (últimas líneas):</span>
+                            <div class="code">{script_stdout}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             """
         
-        return f'<div class="grid">{model_cards}</div>'
+        return f'<div class="detailed-analysis">{model_cards}</div>'
     
     def _generate_resource_table(self, data: Dict[str, Any]) -> str:
         """Genera la tabla de recursos"""
