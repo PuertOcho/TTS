@@ -94,15 +94,24 @@ python3 test_comparison_setup.py
 - **Recomendaciones de uso** según caso
 - **Datos JSON** para análisis avanzado
 
-### Ejemplo de sección de audio:
-```
-🎵 Muestras de Audio por Modelo
-├── Azure TTS
-│   ├── 🎵 Prueba básica: [▶️ Reproductor]
-│   └── 🎵 Texto largo: [▶️ Reproductor]
-├── F5-TTS
-│   └── ...
-```
+---
+
+## 🎧 Ejemplos de voces y resultados
+
+A continuación puedes escuchar ejemplos reales generados por cada modelo y ver una muestra visual de la comparación:
+
+### Ejemplo de resultados visuales
+
+![Comparación de modelos TTS](./tts_comparison_reports/test_comparation.jpeg)
+
+### Ejemplo de voces generadas
+
+- **Azure TTS**: [Escuchar ejemplo](./tts_comparison_reports/audio/01_azure_tts_synthesis_basic.wav)
+- **F5-TTS**: [Escuchar ejemplo](./tts_comparison_reports/audio/01_f5_tts_synthesis_basic.wav)
+- **Kokoro TTS**: [Escuchar ejemplo](./tts_comparison_reports/audio/01_kokoro_tts_synthesis_basic.wav)
+- **XTTS-v2**: [Escuchar ejemplo](./tts_comparison_reports/audio/01_xtts_v2_tts_synthesis_basic.wav)
+
+> Puedes encontrar más muestras en la carpeta `tts_comparison_reports/audio/` generadas automáticamente tras cada comparación.
 
 ---
 
