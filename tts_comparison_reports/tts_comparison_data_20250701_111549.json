@@ -1,0 +1,732 @@
+{
+  "timestamp": "2025-07-01T11:11:06.717587",
+  "models": {
+    "Azure TTS": {
+      "status": "completed",
+      "test_results": {
+        "health": {
+          "azure_available": true,
+          "default_language": "es-ES",
+          "default_voice": "Abril",
+          "model": "azure-tts",
+          "region": "westeurope",
+          "status": "ok"
+        },
+        "voices": {
+          "default_language": "es-ES",
+          "default_voice": "Abril",
+          "language_map": {
+            "es": "es-ES",
+            "es-ar": "es-AR",
+            "es-cl": "es-CL",
+            "es-co": "es-CO",
+            "es-es": "es-ES",
+            "es-mx": "es-MX",
+            "es-pe": "es-PE",
+            "es-ve": "es-VE"
+          },
+          "model": "azure-tts",
+          "total_voices": 33,
+          "voices_by_language": {
+            "es-AR": {
+              "default": "Elena",
+              "female": [
+                "Elena"
+              ],
+              "male": [
+                "Tomas"
+              ]
+            },
+            "es-CL": {
+              "default": "Catalina",
+              "female": [
+                "Catalina"
+              ],
+              "male": [
+                "Lorenzo"
+              ]
+            },
+            "es-CO": {
+              "default": "Gonzalo",
+              "female": [],
+              "male": [
+                "Gonzalo"
+              ]
+            },
+            "es-ES": {
+              "default": "Abril",
+              "female": [
+                "Abril",
+                "Elvira",
+                "Esperanza",
+                "Estrella",
+                "Irene",
+                "Laia",
+                "Lia",
+                "Lola",
+                "Mar",
+                "Nia",
+                "Sol",
+                "Tania",
+                "Vega",
+                "Vera"
+              ],
+              "male": [
+                "Alvaro",
+                "Arnau",
+                "Dario",
+                "Elias",
+                "Nil",
+                "Saul"
+              ]
+            },
+            "es-MX": {
+              "default": "Dalia",
+              "female": [
+                "Dalia",
+                "Renata"
+              ],
+              "male": [
+                "Jorge",
+                "Liberto"
+              ]
+            },
+            "es-PE": {
+              "default": "Camila",
+              "female": [
+                "Camila"
+              ],
+              "male": [
+                "Alex"
+              ]
+            },
+            "es-VE": {
+              "default": "Paola",
+              "female": [
+                "Paola"
+              ],
+              "male": [
+                "Sebastian"
+              ]
+            }
+          }
+        },
+        "synthesis": {
+          "synthesis_basic": {
+            "success": true,
+            "response_time": 0.36388611793518066,
+            "data": {
+              "audio_duration": 4.128,
+              "debug_audio_file": "azure_Abril_20250701_091113_115.wav",
+              "debug_audio_url": "/debug/audio/azure_Abril_20250701_091113_115.wav",
+              "language": "es-ES",
+              "model": "azure-tts",
+              "region": "westeurope",
+              "sample_rate": 24000,
+              "speed": 1.0,
+              "success": true,
+              "text": "Hola, esta es una prueba de síntesis de voz básica.",
+              "voice": "Abril"
+            },
+            "audio_files": [
+              "azure-tts-ms/debug_audio/azure_Abril_20250701_091113_115.wav"
+            ],
+            "text": "Hola, esta es una prueba de síntesis de voz básica.",
+            "description": "synthesis_basic"
+          },
+          "synthesis_long": {
+            "success": true,
+            "response_time": 0.3888416290283203,
+            "data": {
+              "audio_duration": 9.624,
+              "debug_audio_file": "azure_Abril_20250701_091113_505.wav",
+              "debug_audio_url": "/debug/audio/azure_Abril_20250701_091113_505.wav",
+              "language": "es-ES",
+              "model": "azure-tts",
+              "region": "westeurope",
+              "sample_rate": 24000,
+              "speed": 1.0,
+              "success": true,
+              "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+              "voice": "Abril"
+            },
+            "audio_files": [
+              "azure-tts-ms/debug_audio/azure_Abril_20250701_091113_505.wav",
+              "azure-tts-ms/debug_audio/azure_Abril_20250701_091113_115.wav"
+            ],
+            "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+            "description": "synthesis_long"
+          }
+        },
+        "test_script": {
+          "available": true,
+          "success": true,
+          "duration": 7.7705466747283936,
+          "stdout": "====================================================\n PRUEBA DE RECOMENDACIONES DE VOCES\n============================================================\nℹ️  Probando recomendación: es-ES female\n✅ Idioma es-ES female: voz seleccionada Abril\nℹ️  Probando recomendación: es-ES male\n✅ Idioma es-ES male: voz seleccionada Alvaro\nℹ️  Probando recomendación: es-MX female\n✅ Idioma es-MX female: voz seleccionada Dalia\nℹ️  Probando recomendación: es-MX male\n✅ Idioma es-MX male: voz seleccionada Jorge\nℹ️  Resultado: 4/4 recomendaciones exitosas\nℹ️  Ejecutando: Variaciones de Velocidad\n\n============================================================\n PRUEBA DE VARIACIONES DE VELOCIDAD\n============================================================\nℹ️  Probando velocidad: 0.5x\n✅ Velocidad 0.5x: 7.58s audio, velocidad real: 0.5\nℹ️  Probando velocidad: 1.0x\n✅ Velocidad 1.0x: 3.82s audio, velocidad real: 1.0\nℹ️  Probando velocidad: 1.5x\n✅ Velocidad 1.5x: 2.57s audio, velocidad real: 1.5\nℹ️  Probando velocidad: 2.0x\n✅ Velocidad 2.0x: 1.94s audio, velocidad real: 2.0\nℹ️  Resultado: 4/4 velocidades exitosas\nℹ️  Ejecutando: Debug de Audio\n\n============================================================\n PRUEBA DE DEBUG DE AUDIO\n============================================================\n✅ Archivo de debug generado: azure_Abril_20250701_091121_256.wav\nℹ️  Total archivos debug: 303\nℹ️  Debug habilitado: True\nℹ️  Último archivo: azure_Abril_20250701_091121_256.wav (122156 bytes)\n\n============================================================\n RESUMEN DE RESULTADOS\n============================================================\n✅ Health Check: PASÓ\n✅ Listado de Voces: PASÓ\n✅ Disponibilidad de Voces: PASÓ\n✅ Voces en Español: PASÓ\n✅ Cambio de Idiomas: PASÓ\n✅ Recomendaciones de Voces: PASÓ\n✅ Variaciones de Velocidad: PASÓ\n✅ Debug de Audio: PASÓ\nℹ️  Pruebas completadas en 7.68 segundos\nℹ️  Resultado final: 8/8 pruebas exitosas\n✅ ¡TODAS LAS PRUEBAS PASARON! 🎉\nℹ️  Azure TTS Service está funcionando perfectamente\n",
+          "stderr": ""
+        },
+        "audio_files": [
+          {
+            "test": "synthesis_basic",
+            "file": "azure-tts-ms/debug_audio/azure_Abril_20250701_091113_115.wav",
+            "text": "Hola, esta es una prueba de síntesis de voz básica.",
+            "description": "synthesis_basic",
+            "copied_file": "01_azure_tts_synthesis_basic.wav"
+          },
+          {
+            "test": "synthesis_long",
+            "file": "azure-tts-ms/debug_audio/azure_Abril_20250701_091113_505.wav",
+            "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+            "description": "synthesis_long",
+            "copied_file": "02_azure_tts_synthesis_long.wav"
+          },
+          {
+            "test": "synthesis_long",
+            "file": "azure-tts-ms/debug_audio/azure_Abril_20250701_091113_115.wav",
+            "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+            "description": "synthesis_long",
+            "copied_file": "03_azure_tts_synthesis_long.wav"
+          }
+        ]
+      },
+      "resources": {
+        "duration": 6,
+        "cpu": {
+          "avg": 7.766666666666667,
+          "max": 10.1,
+          "min": 5.9
+        },
+        "memory": {
+          "avg": 16.733333333333334,
+          "max": 16.8,
+          "min": 16.7,
+          "peak_gb": 9.458850860595703
+        },
+        "gpu": {
+          "available": true,
+          "util_avg": 3.3333333333333335,
+          "util_max": 5.0,
+          "memory_avg": 4881.0,
+          "memory_max": 4887.0
+        }
+      }
+    },
+    "F5-TTS": {
+      "status": "completed",
+      "test_results": {
+        "health": {
+          "device": "cuda",
+          "f5_available": true,
+          "model": "spanish-f5",
+          "status": "ok"
+        },
+        "voices": {
+          "default": "es_female",
+          "language": "es",
+          "model": "spanish-f5",
+          "voices": {
+            "default": "es_female",
+            "female": [
+              "es_female",
+              "es_maria",
+              "es_elena",
+              "es_sofia"
+            ],
+            "male": [
+              "es_male",
+              "es_carlos",
+              "es_diego",
+              "es_pablo"
+            ]
+          }
+        },
+        "synthesis": {
+          "synthesis_basic": {
+            "success": true,
+            "response_time": 7.797075986862183,
+            "data": {
+              "audio_duration": 2.7093333333333334,
+              "debug_audio_file": "spanish_f5_20250701_111145_241.wav",
+              "debug_audio_url": "/debug/audio/spanish_f5_20250701_111145_241.wav",
+              "f5_available": true,
+              "language": "es",
+              "model": "spanish-f5",
+              "sample_rate": 24000,
+              "speed": 0.9,
+              "success": true,
+              "text": "Hola, esta es una prueba de síntesis de voz básica.",
+              "voice": "es_female"
+            },
+            "audio_files": [
+              "f5-tts-ms/debug_audio/spanish_f5_20250701_111145_241.wav"
+            ],
+            "text": "Hola, esta es una prueba de síntesis de voz básica.",
+            "description": "synthesis_basic"
+          },
+          "synthesis_long": {
+            "success": true,
+            "response_time": 7.915268182754517,
+            "data": {
+              "audio_duration": 7.029333333333334,
+              "debug_audio_file": "spanish_f5_20250701_111153_156.wav",
+              "debug_audio_url": "/debug/audio/spanish_f5_20250701_111153_156.wav",
+              "f5_available": true,
+              "language": "es",
+              "model": "spanish-f5",
+              "sample_rate": 24000,
+              "speed": 0.9,
+              "success": true,
+              "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+              "voice": "es_female"
+            },
+            "audio_files": [
+              "f5-tts-ms/debug_audio/spanish_f5_20250701_111153_156.wav",
+              "f5-tts-ms/debug_audio/spanish_f5_20250701_111145_241.wav"
+            ],
+            "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+            "description": "synthesis_long"
+          }
+        },
+        "test_script": {
+          "available": true,
+          "success": true,
+          "duration": 95.66553950309753,
+          "stdout": "🧪 TEST DE SERVICIO F5-TTS ESPAÑOL\n==================================================\n🌐 URL del servicio: http://localhost:5005\n⏱️  Timeout: 30s\n📝 Modo verboso: ❌ Desactivado\n\n🔍 Verificando disponibilidad del servicio...\n✅ Servicio disponible\n\n🧪 Conectividad y salud del servicio... ✅ PASS\n🧪 Endpoint de voces... ✅ PASS\n🧪 Síntesis básica... ✅ PASS\n🧪 Manejo de errores... ✅ PASS\n🧪 Diferentes voces... ✅ PASS\n🧪 Variaciones de velocidad... ✅ PASS\n🧪 Caracteres especiales... ✅ PASS\n🧪 Tiempo de respuesta... Response time: 7.52s ✅ PASS\n🧪 Funcionalidad de debug... ✅ PASS\n\n============================================================\n📊 RESUMEN DE TESTS F5-TTS ESPAÑOL\n============================================================\n⏱️  Tiempo total: 95.61 segundos\n🧪 Tests ejecutados: 9\n✅ Tests exitosos: 9\n❌ Tests fallidos: 0\n\n🎯 Tasa de éxito: 100.0%\n🎉 ¡TODOS LOS TESTS PASARON EXITOSAMENTE!\n✅ El servicio F5-TTS Español está funcionando perfectamente\n",
+          "stderr": ""
+        },
+        "audio_files": [
+          {
+            "test": "synthesis_basic",
+            "file": "f5-tts-ms/debug_audio/spanish_f5_20250701_111145_241.wav",
+            "text": "Hola, esta es una prueba de síntesis de voz básica.",
+            "description": "synthesis_basic",
+            "copied_file": "04_f5_tts_synthesis_basic.wav"
+          },
+          {
+            "test": "synthesis_long",
+            "file": "f5-tts-ms/debug_audio/spanish_f5_20250701_111153_156.wav",
+            "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+            "description": "synthesis_long",
+            "copied_file": "05_f5_tts_synthesis_long.wav"
+          },
+          {
+            "test": "synthesis_long",
+            "file": "f5-tts-ms/debug_audio/spanish_f5_20250701_111145_241.wav",
+            "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+            "description": "synthesis_long",
+            "copied_file": "06_f5_tts_synthesis_long.wav"
+          }
+        ]
+      },
+      "resources": {
+        "duration": 74,
+        "cpu": {
+          "avg": 17.48918918918919,
+          "max": 34.4,
+          "min": 9.8
+        },
+        "memory": {
+          "avg": 19.056756756756755,
+          "max": 20.6,
+          "min": 17.5,
+          "peak_gb": 11.85342788696289
+        },
+        "gpu": {
+          "available": true,
+          "util_avg": 15.675675675675675,
+          "util_max": 99.0,
+          "memory_avg": 5634.27027027027,
+          "memory_max": 6622.0
+        }
+      }
+    },
+    "Kokoro TTS": {
+      "status": "completed",
+      "test_results": {
+        "health": {
+          "available_voices": 53,
+          "debug_audio_enabled": true,
+          "default_language": "es",
+          "default_voice": "ef_dora",
+          "model": "kokoro-v1.0",
+          "model_path": "/app/models/kokoro-v1.0.onnx",
+          "model_status": "loaded",
+          "status": "healthy",
+          "supported_languages": 8,
+          "version": "1.0",
+          "voices_path": "/app/models/voices-v1.0.bin"
+        },
+        "voices": {
+          "default_voice": "ef_dora",
+          "model_version": "v1.0",
+          "recommendations": {
+            "en": {
+              "default": "af_bella",
+              "female": [
+                "af_bella",
+                "af_heart",
+                "af_nicole",
+                "bf_emma"
+              ],
+              "male": [
+                "am_michael",
+                "am_adam",
+                "bm_george"
+              ]
+            },
+            "es": {
+              "default": "ef_dora",
+              "female": [
+                "ef_dora"
+              ],
+              "male": [
+                "em_alex",
+                "em_santa"
+              ]
+            },
+            "fr": {
+              "default": "ff_siwis",
+              "female": [
+                "ff_siwis"
+              ],
+              "male": []
+            },
+            "hi": {
+              "default": "hf_alpha",
+              "female": [
+                "hf_alpha",
+                "hf_beta"
+              ],
+              "male": [
+                "hm_omega",
+                "hm_psi"
+              ]
+            },
+            "it": {
+              "default": "if_sara",
+              "female": [
+                "if_sara"
+              ],
+              "male": [
+                "im_nicola"
+              ]
+            },
+            "ja": {
+              "default": "jf_alpha",
+              "female": [
+                "jf_alpha",
+                "jf_gongitsune",
+                "jf_nezumi",
+                "jf_tebukuro"
+              ],
+              "male": [
+                "jm_kumo"
+              ]
+            },
+            "pt": {
+              "default": "pf_dora",
+              "female": [
+                "pf_dora"
+              ],
+              "male": [
+                "pm_alex",
+                "pm_santa"
+              ]
+            },
+            "zh": {
+              "default": "zf_xiaobei",
+              "female": [
+                "zf_xiaobei",
+                "zf_xiaoni",
+                "zf_xiaoxiao",
+                "zf_xiaoyi"
+              ],
+              "male": [
+                "zm_yunjian",
+                "zm_yunxi",
+                "zm_yunxia",
+                "zm_yunyang"
+              ]
+            }
+          },
+          "total_voices": 53,
+          "voices_by_language": {
+            "en": [
+              "af_heart",
+              "af_alloy",
+              "af_aoede",
+              "af_bella",
+              "af_jessica",
+              "af_kore",
+              "af_nicole",
+              "af_nova",
+              "af_river",
+              "af_sarah",
+              "af_sky",
+              "am_adam",
+              "am_echo",
+              "am_liam",
+              "am_michael",
+              "am_onyx",
+              "am_puck",
+              "am_sage",
+              "am_shimmer",
+              "bf_alice",
+              "bf_emma",
+              "bf_isabella",
+              "bf_lily",
+              "bm_daniel",
+              "bm_george",
+              "bm_lewis",
+              "bm_william"
+            ],
+            "es": [
+              "ef_dora",
+              "em_alex",
+              "em_santa"
+            ],
+            "fr": [
+              "ff_siwis"
+            ],
+            "hi": [
+              "hf_alpha",
+              "hf_beta",
+              "hm_omega",
+              "hm_psi"
+            ],
+            "it": [
+              "if_sara",
+              "im_nicola"
+            ],
+            "ja": [
+              "jf_alpha",
+              "jf_gongitsune",
+              "jf_nezumi",
+              "jf_tebukuro",
+              "jm_kumo"
+            ],
+            "pt": [
+              "pf_dora",
+              "pm_alex",
+              "pm_santa"
+            ],
+            "zh": [
+              "zf_xiaobei",
+              "zf_xiaoni",
+              "zf_xiaoxiao",
+              "zf_xiaoyi",
+              "zm_yunjian",
+              "zm_yunxi",
+              "zm_yunxia",
+              "zm_yunyang"
+            ]
+          }
+        },
+        "synthesis": {
+          "synthesis_basic": {
+            "success": true,
+            "response_time": 0.6511621475219727,
+            "data": {
+              "audio_duration": 2.9013333333333335,
+              "debug_audio_file": "kokoro_v1_20250701_091350_589.wav",
+              "debug_audio_url": "/debug/audio/kokoro_v1_20250701_091350_589.wav",
+              "language": "es",
+              "model": "kokoro-v1.0",
+              "sample_rate": 24000,
+              "speed": 1.0,
+              "success": true,
+              "text": "Hola, esta es una prueba de síntesis de voz básica.",
+              "voice": "ef_dora"
+            },
+            "audio_files": [
+              "kokoro-tts-ms/debug_audio/kokoro_v1_20250701_091350_589.wav"
+            ],
+            "text": "Hola, esta es una prueba de síntesis de voz básica.",
+            "description": "synthesis_basic"
+          },
+          "synthesis_long": {
+            "success": true,
+            "response_time": 1.6765518188476562,
+            "data": {
+              "audio_duration": 8.128,
+              "debug_audio_file": "kokoro_v1_20250701_091352_265.wav",
+              "debug_audio_url": "/debug/audio/kokoro_v1_20250701_091352_265.wav",
+              "language": "es",
+              "model": "kokoro-v1.0",
+              "sample_rate": 24000,
+              "speed": 1.0,
+              "success": true,
+              "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+              "voice": "ef_dora"
+            },
+            "audio_files": [
+              "kokoro-tts-ms/debug_audio/kokoro_v1_20250701_091352_265.wav",
+              "kokoro-tts-ms/debug_audio/kokoro_v1_20250701_091350_589.wav"
+            ],
+            "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+            "description": "synthesis_long"
+          }
+        },
+        "test_script": {
+          "available": true,
+          "success": true,
+          "duration": 3.8372879028320312,
+          "stdout": "🧪 TEST DE SERVICIO KOKORO TTS v1.0\n==================================================\n🌐 URL del servicio: http://localhost:5002\n⏱️  Timeout: 30s\n📝 Modo verboso: ❌ Desactivado\n\n🔍 Verificando disponibilidad del servicio...\n✅ Servicio disponible\n\n🧪 Conectividad y salud del servicio... ✅ PASS\n🧪 Endpoint de idiomas... ✅ PASS\n🧪 Endpoint de voces... ✅ PASS\n🧪 Síntesis básica... ✅ PASS\n🧪 Manejo de errores... ✅ PASS\n🧪 Diferentes voces... ✅ PASS\n🧪 Síntesis por lotes... ✅ PASS\n\n============================================================\n📊 RESUMEN DE TESTS KOKORO TTS v1.0\n============================================================\n⏱️  Tiempo total: 3.78 segundos\n🧪 Tests ejecutados: 7\n✅ Tests exitosos: 7\n❌ Tests fallidos: 0\n\n🎯 Tasa de éxito: 100.0%\n🎉 ¡TODOS LOS TESTS PASARON EXITOSAMENTE!\n✅ El servicio Kokoro TTS v1.0 está funcionando perfectamente\n",
+          "stderr": ""
+        },
+        "audio_files": [
+          {
+            "test": "synthesis_basic",
+            "file": "kokoro-tts-ms/debug_audio/kokoro_v1_20250701_091350_589.wav",
+            "text": "Hola, esta es una prueba de síntesis de voz básica.",
+            "description": "synthesis_basic",
+            "copied_file": "07_kokoro_tts_synthesis_basic.wav"
+          },
+          {
+            "test": "synthesis_long",
+            "file": "kokoro-tts-ms/debug_audio/kokoro_v1_20250701_091352_265.wav",
+            "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+            "description": "synthesis_long",
+            "copied_file": "08_kokoro_tts_synthesis_long.wav"
+          },
+          {
+            "test": "synthesis_long",
+            "file": "kokoro-tts-ms/debug_audio/kokoro_v1_20250701_091350_589.wav",
+            "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+            "description": "synthesis_long",
+            "copied_file": "09_kokoro_tts_synthesis_long.wav"
+          }
+        ]
+      },
+      "resources": {
+        "duration": 6,
+        "cpu": {
+          "avg": 43.86666666666667,
+          "max": 60.9,
+          "min": 15.9
+        },
+        "memory": {
+          "avg": 17.666666666666668,
+          "max": 17.8,
+          "min": 17.5,
+          "peak_gb": 10.072914123535156
+        },
+        "gpu": {
+          "available": true,
+          "util_avg": 2.6666666666666665,
+          "util_max": 3.0,
+          "memory_avg": 4892.666666666667,
+          "memory_max": 4903.0
+        }
+      }
+    },
+    "XTTS-v2": {
+      "status": "completed",
+      "test_results": {
+        "health": {
+          "debug_audio": true,
+          "device": "cuda",
+          "model": "xtts_v2",
+          "spanish_optimization": "enabled",
+          "spanish_voices_available": 6,
+          "status": "healthy",
+          "torch_cuda_available": true
+        },
+        "voices": {},
+        "synthesis": {
+          "synthesis_basic": {
+            "success": true,
+            "response_time": 2.1828932762145996,
+            "data": {
+              "audio_duration": 6.409433106575964,
+              "debug_audio_file": "tts_20250701_111441_969.wav",
+              "debug_audio_url": "/debug/audio/tts_20250701_111441_969.wav",
+              "language": "es",
+              "model": "xtts_v2",
+              "sample_rate": 22050,
+              "success": true,
+              "text": "Hola, esta es una prueba de síntesis de voz básica."
+            },
+            "audio_files": [
+              "xtts-v2-tts-ms/debug_audio/tts_20250701_111441_969.wav"
+            ],
+            "text": "Hola, esta es una prueba de síntesis de voz básica.",
+            "description": "synthesis_basic"
+          },
+          "synthesis_long": {
+            "success": true,
+            "response_time": 3.0603933334350586,
+            "data": {
+              "audio_duration": 14.897052154195011,
+              "debug_audio_file": "tts_20250701_111444_998.wav",
+              "debug_audio_url": "/debug/audio/tts_20250701_111444_998.wav",
+              "language": "es",
+              "model": "xtts_v2",
+              "sample_rate": 22050,
+              "success": true,
+              "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante."
+            },
+            "audio_files": [
+              "xtts-v2-tts-ms/debug_audio/tts_20250701_111444_998.wav",
+              "xtts-v2-tts-ms/debug_audio/tts_20250701_111441_969.wav"
+            ],
+            "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+            "description": "synthesis_long"
+          }
+        },
+        "test_script": {
+          "available": true,
+          "success": true,
+          "duration": 46.71558904647827,
+          "stdout": "🧪 TEST DE SERVICIO XTTS-v2 TTS ESPAÑOL\n==================================================\n🌐 URL del servicio: http://localhost:5001\n⏱️  Timeout: 30s\n📝 Modo verboso: ❌ Desactivado\n\n🔍 Verificando disponibilidad del servicio...\n✅ Servicio disponible\n\n🧪 Conectividad y salud del servicio... ✅ PASS\n🧪 Endpoint de voces españolas... ✅ PASS\n🧪 Síntesis básica... ✅ PASS\n🧪 Síntesis específica española... ✅ PASS\n🧪 Manejo de errores... ✅ PASS\n🧪 Diferentes voces españolas... ✅ PASS\n🧪 Variaciones de velocidad... ✅ PASS\n🧪 Caracteres especiales... ✅ PASS\n🧪 Demo de voces... ✅ PASS\n🧪 Tiempo de respuesta... Response time: 1.96s ✅ PASS\n🧪 Funcionalidad de debug... ✅ PASS\n\n============================================================\n📊 RESUMEN DE TESTS XTTS-v2 TTS ESPAÑOL\n============================================================\n⏱️  Tiempo total: 46.66 segundos\n🧪 Tests ejecutados: 11\n✅ Tests exitosos: 11\n❌ Tests fallidos: 0\n\n🎯 Tasa de éxito: 100.0%\n🎉 ¡TODOS LOS TESTS PASARON EXITOSAMENTE!\n✅ El servicio XTTS-v2 TTS Español está funcionando perfectamente\n",
+          "stderr": ""
+        },
+        "audio_files": [
+          {
+            "test": "synthesis_basic",
+            "file": "xtts-v2-tts-ms/debug_audio/tts_20250701_111441_969.wav",
+            "text": "Hola, esta es una prueba de síntesis de voz básica.",
+            "description": "synthesis_basic",
+            "copied_file": "10_xtts_v2_synthesis_basic.wav"
+          },
+          {
+            "test": "synthesis_long",
+            "file": "xtts-v2-tts-ms/debug_audio/tts_20250701_111444_998.wav",
+            "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+            "description": "synthesis_long",
+            "copied_file": "11_xtts_v2_synthesis_long.wav"
+          },
+          {
+            "test": "synthesis_long",
+            "file": "xtts-v2-tts-ms/debug_audio/tts_20250701_111441_969.wav",
+            "text": "Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante.",
+            "description": "synthesis_long",
+            "copied_file": "12_xtts_v2_synthesis_long.wav"
+          }
+        ]
+      },
+      "resources": {
+        "duration": 36,
+        "cpu": {
+          "avg": 12.022222222222222,
+          "max": 13.7,
+          "min": 9.4
+        },
+        "memory": {
+          "avg": 19.977777777777778,
+          "max": 20.2,
+          "min": 19.9,
+          "peak_gb": 11.571296691894531
+        },
+        "gpu": {
+          "available": true,
+          "util_avg": 66.16666666666667,
+          "util_max": 79.0,
+          "memory_avg": 7128.944444444444,
+          "memory_max": 7297.0
+        }
+      }
+    }
+  },
+  "summary": {}
+}

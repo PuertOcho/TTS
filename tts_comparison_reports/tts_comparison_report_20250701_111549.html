@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Comparación TTS con Audio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; text-align: center; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .section { background: white; padding: 25px; margin-bottom: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .section h2 { color: #2c3e50; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #3498db; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .detailed-analysis { display: flex; flex-direction: column; gap: 20px; }
+        .model-card { background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db; }
+        .model-card-full { background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db; width: 100%; margin-bottom: 20px; }
+        .model-content { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: stretch; min-height: 400px; }
+        .model-metrics { display: flex; flex-direction: column; }
+        .model-output { display: flex; flex-direction: column; height: 100%; }
+        .model-output .metric { display: flex; flex-direction: column; height: 100%; }
+        .model-output .code { flex: 1; min-height: 300px; max-height: none; overflow-y: auto; }
+        .model-card h3 { color: #2c3e50; margin-bottom: 15px; }
+        .metric { margin: 10px 0; }
+        .metric-label { font-weight: bold; color: #34495e; }
+        .metric-value { color: #27ae60; font-weight: bold; }
+        .status-ok { color: #27ae60; }
+        .status-error { color: #e74c3c; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #3498db; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.9em; font-weight: bold; }
+        .badge-success { background: #d4edda; color: #155724; }
+        .badge-error { background: #f8d7da; color: #721c24; }
+        .code { font-family: monospace; background: #f4f4f4; padding: 10px; border-radius: 4px; white-space: pre-wrap; max-height: 200px; overflow-y: auto; }
+        .audio-player { margin: 10px 0; padding: 15px; background: #f1f3f4; border-radius: 8px; border: 1px solid #e0e0e0; }
+        .audio-player h4 { color: #2c3e50; margin-bottom: 8px; font-size: 1em; }
+        .audio-player p { color: #666; font-size: 0.9em; margin-bottom: 10px; }
+        .audio-player audio { width: 100%; margin-top: 5px; }
+        .audio-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+        .audio-model { background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #e74c3c; }
+        .text-sample { background: #fff; padding: 10px; border-radius: 4px; border: 1px solid #ddd; margin: 5px 0; font-style: italic; color: #555; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎤 Reporte de Comparación TTS con Audio</h1>
+            <p>Análisis Completo de Modelos de Text-to-Speech</p>
+            <p>¡Ahora con Reproductores de Audio! 🔊</p>
+            <p>Generado el 01/07/2025 11:15:49</p>
+        </div>
+        
+        <div class="section">
+            <h2>📊 Resumen Ejecutivo</h2>
+            
+        <table>
+            <thead>
+                <tr>
+                    <th>Modelo</th>
+                    <th>Estado</th>
+                    <th>Tiempo Pruebas</th>
+                    <th>Resp. Promedio</th>
+                    <th>CPU Promedio</th>
+                    <th>GPU Máxima</th>
+                    <th>Muestras Audio</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr>
+                <td><strong>Azure TTS</strong></td>
+                <td><span class="badge badge-success">ÉXITO</span></td>
+                <td>7.8s</td>
+                <td>0.38s</td>
+                <td>7.8%</td>
+                <td>5.0%</td>
+                <td>🎵 2</td>
+            </tr>
+            
+            <tr>
+                <td><strong>F5-TTS</strong></td>
+                <td><span class="badge badge-success">ÉXITO</span></td>
+                <td>95.7s</td>
+                <td>7.86s</td>
+                <td>17.5%</td>
+                <td>99.0%</td>
+                <td>🎵 2</td>
+            </tr>
+            
+            <tr>
+                <td><strong>Kokoro TTS</strong></td>
+                <td><span class="badge badge-success">ÉXITO</span></td>
+                <td>3.8s</td>
+                <td>1.16s</td>
+                <td>43.9%</td>
+                <td>3.0%</td>
+                <td>🎵 2</td>
+            </tr>
+            
+            <tr>
+                <td><strong>XTTS-v2</strong></td>
+                <td><span class="badge badge-success">ÉXITO</span></td>
+                <td>46.7s</td>
+                <td>2.62s</td>
+                <td>12.0%</td>
+                <td>79.0%</td>
+                <td>🎵 2</td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        </div>
+        
+        <div class="section">
+            <h2>🎵 Muestras de Audio por Modelo</h2>
+            <div class="audio-section">
+            <div class="audio-model">
+                <h3>Azure TTS</h3>
+                
+                    <div class="audio-player">
+                        <h4>🎵 Audio Corto</h4>
+                        <div class="text-sample">"Hola, esta es una prueba de síntesis de voz básica."</div>
+                        <audio controls preload="metadata">
+                            <source src="audio/01_azure_tts_synthesis_basic.wav" type="audio/wav">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                    
+                    <div class="audio-player">
+                        <h4>🎵 Audio Largo</h4>
+                        <div class="text-sample">"Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante."</div>
+                        <audio controls preload="metadata">
+                            <source src="audio/02_azure_tts_synthesis_long.wav" type="audio/wav">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                    
+            </div>
+            
+            <div class="audio-model">
+                <h3>F5-TTS</h3>
+                
+                    <div class="audio-player">
+                        <h4>🎵 Audio Corto</h4>
+                        <div class="text-sample">"Hola, esta es una prueba de síntesis de voz básica."</div>
+                        <audio controls preload="metadata">
+                            <source src="audio/04_f5_tts_synthesis_basic.wav" type="audio/wav">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                    
+                    <div class="audio-player">
+                        <h4>🎵 Audio Largo</h4>
+                        <div class="text-sample">"Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante."</div>
+                        <audio controls preload="metadata">
+                            <source src="audio/05_f5_tts_synthesis_long.wav" type="audio/wav">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                    
+            </div>
+            
+            <div class="audio-model">
+                <h3>Kokoro TTS</h3>
+                
+                    <div class="audio-player">
+                        <h4>🎵 Audio Corto</h4>
+                        <div class="text-sample">"Hola, esta es una prueba de síntesis de voz básica."</div>
+                        <audio controls preload="metadata">
+                            <source src="audio/07_kokoro_tts_synthesis_basic.wav" type="audio/wav">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                    
+                    <div class="audio-player">
+                        <h4>🎵 Audio Largo</h4>
+                        <div class="text-sample">"Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante."</div>
+                        <audio controls preload="metadata">
+                            <source src="audio/08_kokoro_tts_synthesis_long.wav" type="audio/wav">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                    
+            </div>
+            
+            <div class="audio-model">
+                <h3>XTTS-v2</h3>
+                
+                    <div class="audio-player">
+                        <h4>🎵 Audio Corto</h4>
+                        <div class="text-sample">"Hola, esta es una prueba de síntesis de voz básica."</div>
+                        <audio controls preload="metadata">
+                            <source src="audio/10_xtts_v2_synthesis_basic.wav" type="audio/wav">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                    
+                    <div class="audio-player">
+                        <h4>🎵 Audio Largo</h4>
+                        <div class="text-sample">"Esta es una prueba más larga para evaluar el rendimiento con textos extensos. La síntesis de texto a voz es una tecnología fascinante."</div>
+                        <audio controls preload="metadata">
+                            <source src="audio/11_xtts_v2_synthesis_long.wav" type="audio/wav">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                    
+            </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🔍 Análisis Detallado por Modelo</h2>
+            <div class="detailed-analysis">
+            <div class="model-card-full">
+                <h3>Azure TTS</h3>
+                <div class="model-content">
+                    <div class="model-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Estado del Servicio:</span>
+                            <span class="metric-value status-ok">ok</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Modelo:</span>
+                            <span class="metric-value">azure-tts</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Tiempo de Respuesta:</span>
+                            <span class="metric-value">0.36s</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Pruebas Síntesis:</span>
+                            <span class="metric-value">2/2</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Muestras de Audio:</span>
+                            <span class="metric-value">🎵 3 archivos capturados</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Script de Prueba:</span>
+                            <span class="metric-value status-ok">7.8s - ÉXITO</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">CPU Promedio:</span>
+                            <span class="metric-value">7.8%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">GPU Máxima:</span>
+                            <span class="metric-value">5.0%</span>
+                        </div>
+                    </div>
+                    <div class="model-output">
+                        <div class="metric">
+                            <span class="metric-label">Salida Script (últimas líneas):</span>
+                            <div class="code">=============================
+ RESUMEN DE RESULTADOS
+============================================================
+✅ Health Check: PASÓ
+✅ Listado de Voces: PASÓ
+✅ Disponibilidad de Voces: PASÓ
+✅ Voces en Español: PASÓ
+✅ Cambio de Idiomas: PASÓ
+✅ Recomendaciones de Voces: PASÓ
+✅ Variaciones de Velocidad: PASÓ
+✅ Debug de Audio: PASÓ
+ℹ️  Pruebas completadas en 7.68 segundos
+ℹ️  Resultado final: 8/8 pruebas exitosas
+✅ ¡TODAS LAS PRUEBAS PASARON! 🎉
+ℹ️  Azure TTS Service está funcionando perfectamente
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="model-card-full">
+                <h3>F5-TTS</h3>
+                <div class="model-content">
+                    <div class="model-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Estado del Servicio:</span>
+                            <span class="metric-value status-ok">ok</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Modelo:</span>
+                            <span class="metric-value">spanish-f5</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Tiempo de Respuesta:</span>
+                            <span class="metric-value">7.80s</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Pruebas Síntesis:</span>
+                            <span class="metric-value">2/2</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Muestras de Audio:</span>
+                            <span class="metric-value">🎵 3 archivos capturados</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Script de Prueba:</span>
+                            <span class="metric-value status-ok">95.7s - ÉXITO</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">CPU Promedio:</span>
+                            <span class="metric-value">17.5%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">GPU Máxima:</span>
+                            <span class="metric-value">99.0%</span>
+                        </div>
+                    </div>
+                    <div class="model-output">
+                        <div class="metric">
+                            <span class="metric-label">Salida Script (últimas líneas):</span>
+                            <div class="code">🧪 Caracteres especiales... ✅ PASS
+🧪 Tiempo de respuesta... Response time: 7.52s ✅ PASS
+🧪 Funcionalidad de debug... ✅ PASS
+
+============================================================
+📊 RESUMEN DE TESTS F5-TTS ESPAÑOL
+============================================================
+⏱️  Tiempo total: 95.61 segundos
+🧪 Tests ejecutados: 9
+✅ Tests exitosos: 9
+❌ Tests fallidos: 0
+
+🎯 Tasa de éxito: 100.0%
+🎉 ¡TODOS LOS TESTS PASARON EXITOSAMENTE!
+✅ El servicio F5-TTS Español está funcionando perfectamente
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="model-card-full">
+                <h3>Kokoro TTS</h3>
+                <div class="model-content">
+                    <div class="model-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Estado del Servicio:</span>
+                            <span class="metric-value status-ok">healthy</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Modelo:</span>
+                            <span class="metric-value">kokoro-v1.0</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Tiempo de Respuesta:</span>
+                            <span class="metric-value">0.65s</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Pruebas Síntesis:</span>
+                            <span class="metric-value">2/2</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Muestras de Audio:</span>
+                            <span class="metric-value">🎵 3 archivos capturados</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Script de Prueba:</span>
+                            <span class="metric-value status-ok">3.8s - ÉXITO</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">CPU Promedio:</span>
+                            <span class="metric-value">43.9%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">GPU Máxima:</span>
+                            <span class="metric-value">3.0%</span>
+                        </div>
+                    </div>
+                    <div class="model-output">
+                        <div class="metric">
+                            <span class="metric-label">Salida Script (últimas líneas):</span>
+                            <div class="code">SS
+🧪 Síntesis básica... ✅ PASS
+🧪 Manejo de errores... ✅ PASS
+🧪 Diferentes voces... ✅ PASS
+🧪 Síntesis por lotes... ✅ PASS
+
+============================================================
+📊 RESUMEN DE TESTS KOKORO TTS v1.0
+============================================================
+⏱️  Tiempo total: 3.78 segundos
+🧪 Tests ejecutados: 7
+✅ Tests exitosos: 7
+❌ Tests fallidos: 0
+
+🎯 Tasa de éxito: 100.0%
+🎉 ¡TODOS LOS TESTS PASARON EXITOSAMENTE!
+✅ El servicio Kokoro TTS v1.0 está funcionando perfectamente
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="model-card-full">
+                <h3>XTTS-v2</h3>
+                <div class="model-content">
+                    <div class="model-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Estado del Servicio:</span>
+                            <span class="metric-value status-ok">healthy</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Modelo:</span>
+                            <span class="metric-value">xtts_v2</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Tiempo de Respuesta:</span>
+                            <span class="metric-value">2.18s</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Pruebas Síntesis:</span>
+                            <span class="metric-value">2/2</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Muestras de Audio:</span>
+                            <span class="metric-value">🎵 3 archivos capturados</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Script de Prueba:</span>
+                            <span class="metric-value status-ok">46.7s - ÉXITO</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">CPU Promedio:</span>
+                            <span class="metric-value">12.0%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">GPU Máxima:</span>
+                            <span class="metric-value">79.0%</span>
+                        </div>
+                    </div>
+                    <div class="model-output">
+                        <div class="metric">
+                            <span class="metric-label">Salida Script (últimas líneas):</span>
+                            <div class="code">mo de voces... ✅ PASS
+🧪 Tiempo de respuesta... Response time: 1.96s ✅ PASS
+🧪 Funcionalidad de debug... ✅ PASS
+
+============================================================
+📊 RESUMEN DE TESTS XTTS-v2 TTS ESPAÑOL
+============================================================
+⏱️  Tiempo total: 46.66 segundos
+🧪 Tests ejecutados: 11
+✅ Tests exitosos: 11
+❌ Tests fallidos: 0
+
+🎯 Tasa de éxito: 100.0%
+🎉 ¡TODOS LOS TESTS PASARON EXITOSAMENTE!
+✅ El servicio XTTS-v2 TTS Español está funcionando perfectamente
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>💻 Análisis de Recursos</h2>
+            
+        <table>
+            <thead>
+                <tr>
+                    <th>Modelo</th>
+                    <th>CPU Promedio</th>
+                    <th>CPU Máximo</th>
+                    <th>RAM Promedio</th>
+                    <th>RAM Pico</th>
+                    <th>GPU Promedio</th>
+                    <th>GPU Máximo</th>
+                    <th>VRAM Máximo</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr>
+                <td><strong>Azure TTS</strong></td>
+                <td>7.8%</td>
+                <td>10.1%</td>
+                <td>16.7%</td>
+                <td>9.5 GB</td>
+                <td>3.3%</td>
+                <td>5.0%</td>
+                <td>4887 MB</td>
+            </tr>
+            
+            <tr>
+                <td><strong>F5-TTS</strong></td>
+                <td>17.5%</td>
+                <td>34.4%</td>
+                <td>19.1%</td>
+                <td>11.9 GB</td>
+                <td>15.7%</td>
+                <td>99.0%</td>
+                <td>6622 MB</td>
+            </tr>
+            
+            <tr>
+                <td><strong>Kokoro TTS</strong></td>
+                <td>43.9%</td>
+                <td>60.9%</td>
+                <td>17.7%</td>
+                <td>10.1 GB</td>
+                <td>2.7%</td>
+                <td>3.0%</td>
+                <td>4903 MB</td>
+            </tr>
+            
+            <tr>
+                <td><strong>XTTS-v2</strong></td>
+                <td>12.0%</td>
+                <td>13.7%</td>
+                <td>20.0%</td>
+                <td>11.6 GB</td>
+                <td>66.2%</td>
+                <td>79.0%</td>
+                <td>7297 MB</td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        </div>
+        
+        <div class="section">
+            <h2>🎯 Recomendaciones</h2>
+            <div class="grid">
+                <div class="model-card">
+                    <h3>🏆 Para Producción Comercial</h3>
+                    <p><strong>Azure TTS</strong> - Ideal para aplicaciones que requieren velocidad, confiabilidad y múltiples dialectos</p>
+                </div>
+                <div class="model-card">
+                    <h3>⚡ Para Alto Volumen</h3>
+                    <p><strong>Kokoro TTS</strong> - Mejor balance rendimiento/recursos para sistemas auto-hospedados</p>
+                </div>
+                <div class="model-card">
+                    <h3>🎤 Para Clonación de Voz</h3>
+                    <p><strong>XTTS-v2</strong> - Cuando necesites clonar voces específicas o máximo control</p>
+                </div>
+                <div class="model-card">
+                    <h3>🇪🇸 Para Acento Español Perfecto</h3>
+                    <p><strong>F5-TTS</strong> - Cuando la calidad del acento español sea más importante que la velocidad</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
